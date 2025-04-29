@@ -9,6 +9,7 @@ const romanNumerals = [
 ];
 
 function convertToRoman(num) {
+    if (num === 0) return ''; // Roman numerals do not have a representation for 0
     let result = '';
     for (let i = 0; i < romanNumerals.length; i++) {
         while (num >= romanNumerals[i][1]) {
@@ -22,10 +23,13 @@ function convertToRoman(num) {
 document.getElementById('convertButton').addEventListener('click', function() {
     const numberInput = document.getElementById('numberInput').value;
     const number = parseInt(numberInput);
-    if (number >= 0 && number <= 100000) {
+
+    if (isNaN(number)) {
+        document.getElementById('result').innerText = 'Please enter a valid number.';
+    } else if (number < 0 || number > 100000) {
+        document.getElementById('result').innerText = 'Please enter a number between 0 and 100000.';
+    } else {
         const romanNumeral = convertToRoman(number);
         document.getElementById('result').innerText = `Roman Numeral: ${romanNumeral}`;
-    } else {
-        document.getElementById('result').innerText = 'Please enter a number between 0 and 100000.';
     }
 });
