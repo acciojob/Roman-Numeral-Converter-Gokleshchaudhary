@@ -40,6 +40,7 @@ document.getElementById('convertButton').addEventListener('click', function() {
         document.getElementById('result').innerText = 'Please enter a number between 0 and 100000.';
     } else {
         const romanNumeral = convertToRoman(number);
+        // Replace 'I' with vertical 'I'
         document.getElementById('result').innerHTML = `Roman Numeral: ${romanNumeral.replace(/I/g, '<span class="vertical-i">I</span>')}`;
     }
 });
