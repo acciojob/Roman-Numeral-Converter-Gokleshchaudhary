@@ -10,22 +10,18 @@ const romanNumerals = [
 
 function convertToRoman(num) {
     let result = '';
-
     for (let i = 0; i < romanNumerals.length; i++) {
         while (num >= romanNumerals[i][1]) {
-            result += romanNumerals[i][0]; // Append the Roman numeral
-            num -= romanNumerals[i][1];    // Subtract the value from num
+            result += romanNumerals[i][0];
+            num -= romanNumerals[i][1];
         }
     }
-
     return result;
 }
 
-// Event listener for the button click
 document.getElementById('convertButton').addEventListener('click', function() {
     const numberInput = document.getElementById('numberInput').value;
     const number = parseInt(numberInput);
-
     if (number >= 0 && number <= 100000) {
         const romanNumeral = convertToRoman(number);
         document.getElementById('result').innerText = `Roman Numeral: ${romanNumeral}`;
