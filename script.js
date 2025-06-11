@@ -8,16 +8,12 @@ const romanSymbols = [
     ['I', 1]
 ];
 function convertToRoman(num) {
-    let result = '';
-    
-    for (let i = 0; i < romanSymbols.length; i++) {
-        while (num >= romanSymbols[i][1]) {
-            result += romanSymbols[i][0];
-            num -= romanSymbols[i][1];
-        }
-    }
-    
-    return result;
+    // function implementation
 }
-console.log(convertToRoman(14));  // Output: XIV
-console.log(convertToRoman(798)); // Output: DCCXCVIII
+document.getElementById('convertButton').addEventListener('click', function() {
+    const numberInput = document.getElementById('numberInput').value;
+    const number = parseInt(numberInput);
+    const romanNumeral = convertToRoman(number); // This should come after the function is defined
+});
+console.log('Function is being called');
+const romanNumeral = convertToRoman(number);
