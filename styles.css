@@ -46,10 +46,3 @@ h2 {
     text-align: center;
     color: #333;
 }
-
-.vertical-i {
-    display: inline-block;
-    transform: rotate(90deg);
-    font-size: 20px;
-    margin: 0 2px;
-}

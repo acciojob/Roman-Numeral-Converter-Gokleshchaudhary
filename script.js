@@ -14,16 +14,21 @@ function convertToRoman(num) {
     for (let i = 0; i < romanNumerals.length; i++) {
         const [symbol, value] = romanNumerals[i];
         
-        // While the number is greater than or equal to the value
         while (num >= value) {
-            result += symbol; // Append the symbol to the result
-            num -= value; // Subtract the value from num
+            result += symbol;
+            num -= value;
         }
     }
     
-    return result; // Return the final Roman numeral
+    return result;
 }
 
-// Example usage:
-console.log(convertToRoman(14));   // Output: XIV
-console.log(convertToRoman(798));
+document.getElementById('convertButton').addEventListener('click', function() {
+    const num = parseInt(document.getElementById('numberInput').value);
+    if (num < 1 || num > 100000) {
+        document.getElementById('result').innerText = "Please enter a number between 1 and 100000.";
+    } else {
+        const romanNumeral = convertToRoman(num);
+        document.getElementById('result').innerText = romanNumeral;
+    }
+});
