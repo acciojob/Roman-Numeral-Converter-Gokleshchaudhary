@@ -1,11 +1,17 @@
 function convertToRoman(num) {
     const romanSymbols = [
         ['M', 1000],
+        ['CM', 900],
         ['D', 500],
+        ['CD', 400],
         ['C', 100],
+        ['XC', 90],
         ['L', 50],
+        ['XL', 40],
         ['X', 10],
+        ['IX', 9],
         ['V', 5],
+        ['IV', 4],
         ['I', 1]
     ];
 
@@ -22,5 +28,13 @@ function convertToRoman(num) {
 
     return result; // Return the final Roman numeral
 }
-console.log(convertToRoman(14));   // Output: XIV
-console.log(convertToRoman(798));  // Output: DCCXCVIII
+
+document.getElementById('convertButton').addEventListener('click', function() {
+    const num = parseInt(document.getElementById('numberInput').value);
+    if (num < 1 || num > 100000) {
+        document.getElementById('result').innerText = "Please enter a number between 1 and 100000.";
+    } else {
+        const romanNumeral = convertToRoman(num);
+        document.getElementById('result').innerText = romanNumeral;
+    }
+});
