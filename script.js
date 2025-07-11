@@ -1,6 +1,14 @@
+const express = require('express');
+const bodyParser = require('body-parser');
+const app = express();
+const PORT = 3000;
+
+app.use(bodyParser.json());
+
+// ✅ Roman numeral converter function
 function convertToRoman(num) {
   if (num <= 0 || num > 100000) {
-    return "Please enter a number between 1 and 100000.";
+    return 'Invalid input';
   }
 
   const romanMap = [
@@ -21,7 +29,7 @@ function convertToRoman(num) {
 
   let result = '';
 
-  for (let [symbol, value] of romanMap) {
+  for (const [symbol, value] of romanMap) {
     while (num >= value) {
       result += symbol;
       num -= value;
@@ -31,16 +39,16 @@ function convertToRoman(num) {
   return result;
 }
 
-function handleConvert() {
-  const input = document.getElementById("numberInput").value;
-  const number = parseInt(input, 10);
-  const resultElement = document.getElementById("result");
+// ✅ Required for Cypress test to detect the function
+module.exports = { convertToRoman };
 
-  if (isNaN(number)) {
-    resultElement.textContent = "Please enter a valid number.";
-    return;
-  }
+// ✅ API endpoint
+app.post('/romanConverter', (req, res) => {
+  const { input } = req.body;
+  const roman = convertToRoman(input);
+  res.json({ result: roman });
+});
 
-  const roman = convertToRoman(number);
-  resultElement.textContent = `Roman Numeral: ${roman}`;
-}
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
